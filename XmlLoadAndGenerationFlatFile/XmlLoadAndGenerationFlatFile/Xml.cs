@@ -47,11 +47,11 @@ namespace XmlLoadAndGenerationFlatFile
                 {
                     case XmlNodeType.XmlDeclaration:
                         str.Append("XML Declaration:");
-                        str.AppendLine(node.Name + " " + node.Value);
+                        str.AppendLine(node.Name + " " + node.InnerText);
                         break;
                     case XmlNodeType.Element:
                         str.Append("Element:");
-                        str.AppendLine(node.Name);
+                        str.AppendLine(node.InnerText);
                         break;
                     case XmlNodeType.Text:
                         str.AppendLine(node.Value);

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
+
 namespace XmlLoadAndGenerationFlatFile
 {
     public partial class Form1 : Form
@@ -40,27 +41,65 @@ namespace XmlLoadAndGenerationFlatFile
                     XmlDocument xDoc = new XmlDocument();
                     xDoc.Load(dlg.FileName);
                     treeView1.Nodes.Clear();
-                    treeView1.Nodes.Add(new TreeNode(xDoc.DocumentElement.Name));                   
+                    treeView1.Nodes.Add(new TreeNode(xDoc.DocumentElement.Name));
                     tNode = new TreeNode();
                     tNode = (TreeNode)treeView1.Nodes[0];
                     addTreeNode(xDoc.DocumentElement, tNode);
-                    //treeView1.ExpandAll();
+                    treeView1.ExpandAll();
                 }
-                catch (XmlException xExc) 
+                catch (XmlException xExc)
                 {
                     MessageBox.Show(xExc.Message);
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
                 finally
                 {
-                    this.Cursor = Cursors.Default; 
+                    this.Cursor = Cursors.Default;
+                }
+            }
+            richTextBox2.Text = null;
+           // XmlTextReader reader = new XmlTextReader(dlg.FileName);
+            readerXml(dlg.FileName);
+
+}
+
+        void readerXml(string dlg)
+        {
+            XmlDocument document = new XmlDocument();
+            document.Load(dlg);
+
+            XmlNodeReader reader = new XmlNodeReader(document);
+
+            while (reader.Read())
+            {
+                switch (reader.NodeType)
+                {
+                    case XmlNodeType.Element:
+
+                        richTextBox2.Text+=(reader.GetAttribute("name") + "\r\n");
+                       
+                        //if (reader.IsEmptyElement)
+                        //    depth--;
+
+                        break;
+
+                    //case XmlNodeType.Comment:
+                    //    TabOutput(depth);
+                    //    Console.WriteLine("<!--" + reader.Value + "-->\r\n");
+                    //    break;
+
+                    case XmlNodeType.Text:
+                        richTextBox2.Text += ("\t" + reader.Value + "\r\n");
+                        break;
                 }
             }
         }
-        
+
+//----------------------------------------------------------------------------------------------------        
+     
         /// <summary>
         /// This function is called recursively until all nodes are loaded
         /// </summary>
