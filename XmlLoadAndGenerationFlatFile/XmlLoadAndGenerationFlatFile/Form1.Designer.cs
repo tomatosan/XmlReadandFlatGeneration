@@ -32,7 +32,9 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.button2 = new System.Windows.Forms.Button();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.treeView2 = new System.Windows.Forms.TreeView();
+            this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.valueColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // button1
@@ -72,20 +74,29 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // richTextBox2
+            // treeView2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(748, 49);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(357, 285);
-            this.richTextBox2.TabIndex = 5;
-            this.richTextBox2.Text = "";
+            this.treeView2.Location = new System.Drawing.Point(748, 49);
+            this.treeView2.Name = "treeView2";
+            this.treeView2.Size = new System.Drawing.Size(275, 285);
+            this.treeView2.TabIndex = 5;
+            // 
+            // nameColumnHeader
+            // 
+            this.nameColumnHeader.Text = "Attribute";
+            this.nameColumnHeader.Width = 130;
+            // 
+            // valueColumnHeader
+            // 
+            this.valueColumnHeader.Text = "Value";
+            this.valueColumnHeader.Width = 130;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1117, 339);
-            this.Controls.Add(this.richTextBox2);
+            this.ClientSize = new System.Drawing.Size(1035, 339);
+            this.Controls.Add(this.treeView2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.richTextBox1);
@@ -102,7 +113,9 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.TreeView treeView2;
+        private System.Windows.Forms.ColumnHeader nameColumnHeader;
+        private System.Windows.Forms.ColumnHeader valueColumnHeader;
 
     }
 }

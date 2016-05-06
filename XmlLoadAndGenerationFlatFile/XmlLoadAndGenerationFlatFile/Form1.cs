@@ -60,41 +60,66 @@ namespace XmlLoadAndGenerationFlatFile
                     this.Cursor = Cursors.Default;
                 }
             }
-            richTextBox2.Text = null;
+
            // XmlTextReader reader = new XmlTextReader(dlg.FileName);
             readerXml(dlg.FileName);
-
+            
 }
 
         void readerXml(string dlg)
         {
-            XmlDocument document = new XmlDocument();
-            document.Load(dlg);
-
-            XmlNodeReader reader = new XmlNodeReader(document);
-
-            while (reader.Read())
+            treeView2.Nodes.Clear();
+            XElement root = XElement.Load(dlg);
+            XDocument doc = XDocument.Load(dlg);
+            XmlDocument docs = new XmlDocument();
+            docs.Load(dlg);
+           
+            foreach (XElement el in root.Elements())
             {
-                switch (reader.NodeType)
+                if (el.Attribute("name") != null && el.Attribute("name").Value == root.FirstAttribute.Value)
                 {
-                    case XmlNodeType.Element:
-
-                        richTextBox2.Text+=(reader.GetAttribute("name") + "\r\n");
-                       
-                        //if (reader.IsEmptyElement)
-                        //    depth--;
-
-                        break;
-
-                    //case XmlNodeType.Comment:
-                    //    TabOutput(depth);
-                    //    Console.WriteLine("<!--" + reader.Value + "-->\r\n");
-                    //    break;
-
-                    case XmlNodeType.Text:
-                        richTextBox2.Text += ("\t" + reader.Value + "\r\n");
-                        break;
+                    treeView2.Nodes.Add(root.FirstAttribute.Value).ForeColor = Color.Green;
                 }
+
+               // reader(el);       
+            }
+            //foreach (XElement el in doc.Root.Elements())
+            //{
+            //        //Console.WriteLine("{0}", el.Name.LocalName);
+                             
+            //    Console.WriteLine("  Elements:");
+           
+            //    foreach (XElement element in el.Elements())
+            //    {
+            //        Console.WriteLine("    {0}", element.FirstAttribute.Value);
+            //        //foreach (XAttribute attr in el.Attributes())
+            //        //Console.WriteLine("    {0}", attr.Value);
+            //    }
+            //}
+            AddNodes(XElement.Load(dlg));
+        }
+
+        void AddNodes(XElement parentElement, TreeNode parent = null)
+        {
+            Queue<XElement> queue = new Queue<XElement>(parentElement.Elements());
+            while (queue.Count > 1)
+            {
+                TreeNode child = parent;
+                XElement element = queue.Dequeue();
+                if (!element.HasElements)
+                {
+                    string value = "";
+                    //if(element.FirstAttribute.Value!=null)
+                    //value =""+ element.FirstAttribute.Value; 
+                    element = (XElement)element.NextNode;
+                    if (element != null && !element.HasElements) value = element.FirstAttribute.Value;
+
+                    if (parent == null) { value = element.FirstAttribute.Value; treeView2.Nodes.Add(child = new TreeNode(value)); }
+                    else parent.Nodes.Add(child = new TreeNode(value));
+                    child.Expand();
+                    element = queue.Dequeue();
+                }
+                AddNodes(element, child);
             }
         }
 
