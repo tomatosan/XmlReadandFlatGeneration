@@ -16,3 +16,4 @@ C:\Users\User\Documents\XmlReadandFlatGeneration\XmlLoadAndGenerationFlatFile\Xm
 C:\Users\User\Documents\XmlReadandFlatGeneration\XmlLoadAndGenerationFlatFile\XmlLoadAndGenerationFlatFile\obj\Debug\XmlLoadAndGenerationFlatFile.Form1.resources
 C:\Users\User\Documents\XmlReadandFlatGeneration\XmlLoadAndGenerationFlatFile\XmlLoadAndGenerationFlatFile\obj\Debug\XmlLoadAndGenerationFlatFile.Properties.Resources.resources
 C:\Users\User\Documents\XmlReadandFlatGeneration\XmlLoadAndGenerationFlatFile\XmlLoadAndGenerationFlatFile\obj\Debug\XmlLoadAndGenerationFlatFile.csproj.GenerateResource.Cache
+C:\Users\User\Documents\XmlReadandFlatGeneration\XmlLoadAndGenerationFlatFile\XmlLoadAndGenerationFlatFile\bin\Debug\Microsoft.VisualStudio.DgmlTestModeling.dll
