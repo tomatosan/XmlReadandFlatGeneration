@@ -86,6 +86,7 @@
     <Content Include="file.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="test.xml" />
     <Content Include="TEST_DOCUMENT.xml" />
     <Content Include="TEST_SPECIFICATION.xml">
       <SubType>Designer</SubType>

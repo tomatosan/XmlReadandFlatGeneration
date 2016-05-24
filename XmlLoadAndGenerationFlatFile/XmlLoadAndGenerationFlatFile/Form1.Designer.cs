@@ -139,6 +139,7 @@
             this.saveXMLToolStripMenuItem.Name = "saveXMLToolStripMenuItem";
             this.saveXMLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveXMLToolStripMenuItem.Text = "Save XML";
+            this.saveXMLToolStripMenuItem.Click += new System.EventHandler(this.saveXMLToolStripMenuItem_Click);
             // 
             // saveFlatToolStripMenuItem
             // 

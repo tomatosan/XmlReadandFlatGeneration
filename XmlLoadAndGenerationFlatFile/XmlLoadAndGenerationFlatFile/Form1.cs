@@ -237,7 +237,54 @@ namespace XmlLoadAndGenerationFlatFile
 
         private void saveFlatToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
+            saveFileDialog1.Filter = "XML Files (*.xml)|*.xml";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                exportToXml(treeView2, saveFileDialog1.FileName);
+            }            
+        }
+
+        private void saveXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// /////////////////////////////////
+        /// </summary>
+        private StreamWriter sr;
+
+        public void exportToXml(TreeView tv, string filename)
+        {
+            sr = new StreamWriter(filename);
+            sr.WriteLine("<" + treeView2.Nodes[0].Text + ">");
+            foreach (TreeNode node in tv.Nodes)
+            {
+                saveNode(node.Nodes);
+            }
+            //Close the root node
+            sr.WriteLine("</" + treeView2.Nodes[0].Text + ">");
+            sr.Close();
+        }
+
+        private void saveNode(TreeNodeCollection tnc)
+        {
+            foreach (TreeNode node in tnc)
+            {
+                if (node.Nodes.Count > 0)
+                {
+                    sr.WriteLine("<" + node.Text + ">");
+                    saveNode(node.Nodes);
+                    sr.WriteLine("</" + node.Text + ">");
+                }
+                else //No child nodes, so we just write the text
+                    sr.WriteLine(node.Text);
+            }
         }
     }
 }
